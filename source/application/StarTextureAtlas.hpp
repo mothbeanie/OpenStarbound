@@ -402,7 +402,14 @@ auto TextureAtlasSet<AtlasTextureHandle>::addTextureToAtlas(TextureAtlas* atlas,
 
   setAtlasRegionUsed(atlas, RectU::withSize({fitCellX, fitCellY}, {(unsigned)numCellsX, (unsigned)numCellsY}), true);
 
-  copyAtlasPixels(atlas->atlasTexture, Vec2U(fitCellX * m_atlasCellSize, fitCellY * m_atlasCellSize), image);
+  Image premultiplied = image;
+  premultiplied.forEachPixel([](unsigned, unsigned, Vec4B& pixel) {
+    float alpha = byteToFloat(pixel[3]);
+    pixel[0] *= alpha;
+    pixel[1] *= alpha;
+    pixel[2] *= alpha;
+  });
+  copyAtlasPixels(atlas->atlasTexture, Vec2U(fitCellX * m_atlasCellSize, fitCellY * m_atlasCellSize), premultiplied);
 
   AtlasPlacement atlasPlacement;
   atlasPlacement.atlas = atlas;

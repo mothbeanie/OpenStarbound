@@ -109,7 +109,7 @@ private:
     GLuint textureId = 0;
     Vec2U textureSize;
     TextureAddressing textureAddressing = TextureAddressing::Clamp;
-    TextureFiltering textureFiltering = TextureFiltering::Nearest;
+    TextureFiltering textureFiltering = TextureFiltering::Linear;
   };
 
   struct GlRenderVertex {

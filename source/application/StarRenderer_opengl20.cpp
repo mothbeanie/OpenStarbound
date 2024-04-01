@@ -118,7 +118,7 @@ Vec2U OpenGl20Renderer::screenSize() const {
 }
 
 OpenGl20Renderer::GlFrameBuffer::GlFrameBuffer(Json const& fbConfig) : config(fbConfig) {
-  texture = createGlTexture(ImageView(), TextureAddressing::Clamp, TextureFiltering::Nearest);
+  texture = createGlTexture(ImageView(), TextureAddressing::Clamp, TextureFiltering::Linear);
   glBindTexture(GL_TEXTURE_2D, texture->glTextureId());
 
   Vec2U size = jsonToVec2U(config.getArray("size", { 256, 256 }));

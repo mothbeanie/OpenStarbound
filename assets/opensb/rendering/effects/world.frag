@@ -76,11 +76,10 @@ void main() {
   if (texColor.a <= 0.0)
     discard;
 
+  texColor.rgb /= texColor.a;
   vec4 finalColor = texColor * fragmentColor;
   float finalLightMapMultiplier = fragmentLightMapMultiplier * lightMapMultiplier;
-  if (texColor.a == 0.99607843137)
-    finalColor.a = fragmentColor.a;
-  else if (lightMapEnabled && finalLightMapMultiplier > 0.0)
+  if (lightMapEnabled && finalLightMapMultiplier > 0.0)
     finalColor.rgb *= sampleLight(fragmentLightMapCoordinate, 1.0 / lightMapSize) * finalLightMapMultiplier;
   gl_FragColor = finalColor;
 }

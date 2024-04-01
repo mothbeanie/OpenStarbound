@@ -22,6 +22,6 @@ void main() {
   }
   if (texColor.a <= 0.0)
     discard;
-
+  texColor.rgb /= texColor.a;
   gl_FragColor = texColor * fragmentColor;
 }

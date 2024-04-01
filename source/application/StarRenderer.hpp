@@ -150,10 +150,10 @@ public:
 
   virtual TexturePtr createTexture(Image const& texture,
       TextureAddressing addressing = TextureAddressing::Clamp,
-      TextureFiltering filtering = TextureFiltering::Nearest) = 0;
+      TextureFiltering filtering = TextureFiltering::Linear) = 0;
   virtual void setSizeLimitEnabled(bool enabled) = 0;
   virtual void setMultiTexturingEnabled(bool enabled) = 0;
-  virtual TextureGroupPtr createTextureGroup(TextureGroupSize size = TextureGroupSize::Medium, TextureFiltering filtering = TextureFiltering::Nearest) = 0;
+  virtual TextureGroupPtr createTextureGroup(TextureGroupSize size = TextureGroupSize::Medium, TextureFiltering filtering = TextureFiltering::Linear) = 0;
   virtual RenderBufferPtr createRenderBuffer() = 0;
 
   virtual List<RenderPrimitive>& immediatePrimitives() = 0;
